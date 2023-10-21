@@ -5,10 +5,10 @@ print("Databse connection successfull")
 
 conn.execute('''CREATE TABLE IF NOT EXISTS "Vehicle"(
   "VehicleID" INTEGER NOT NULL,
-  "RegistrationID" VARCHAR NOT NULL,
-  "Manufacturer" VARCHAR NOT NULL,
-  "Model" VARCHAR NOT NULL,
-  "Color" VARCHAR NOT NULL,
+  "RegistrationID" TEXT NOT NULL,
+  "Manufacturer" TEXT NOT NULL,
+  "Model" TEXT NOT NULL,
+  "Color" TEXT NOT NULL,
   "CurrentOdometer" INT NOT NULL,
   "PassengerCapacity" INT NOT NULL,
   "Avalaible" BOOLEAN NOT NULL,
@@ -19,7 +19,7 @@ print("Table Vehicle succesfully created")
 
 conn.execute('''CREATE TABLE IF NOT EXISTS "Language"(
   "LanguageCode" CHAR(2) NOT NULL,
-  "LanguageName" VARCHAR NOT NULL,
+  "LanguageName" TEXT NOT NULL,
   PRIMARY KEY("LanguageCode"));'''
 )
 
@@ -27,7 +27,7 @@ print("Table Language succesfully created")
 
 conn.execute('''CREATE TABLE IF NOT EXISTS "Country"(
   "CountryCode" CHAR(2) NOT NULL,
-  "CountryName" VARCHAR NOT NULL,
+  "CountryName" TEXT NOT NULL,
   "MostFrequentlySpokenLanguage" CHAR(2) NOT NULL,
   PRIMARY KEY("CountryCode"),
   CONSTRAINT "Language_Country"
@@ -40,8 +40,8 @@ print("Table Country succesfully created")
 conn.execute('''CREATE TABLE IF NOT EXISTS "Official"(
   "OfficialID" INTEGER NOT NULL,
   "CityID" CHAR(8) NOT NULL,
-  "Name" VARCHAR NOT NULL,
-  "Role" VARCHAR NOT NULL,
+  "Name" TEXT NOT NULL,
+  "Role" TEXT NOT NULL,
   "PreferredLanguage" CHAR(2) NOT NULL,
   "CountryCode" CHAR(2) NOT NULL,
   PRIMARY KEY("OfficialID"),
@@ -56,13 +56,13 @@ print("Table Official succesfully created")
 conn.execute('''CREATE TABLE IF NOT EXISTS "Driver"(
   "DriverID" INTEGER NOT NULL,
   "LicenseNumber" CHAR(18) NOT NULL,
-  "Name" VARCHAR NOT NULL,
+  "Name" TEXT NOT NULL,
   "ClearanceLevel" INT NOT NULL,
   "FATLLevel" INT,
   "FATLQualificationDate" DATE,
   "STLVTLevel" INT,
   "STLVTQualificationDate" DATE,
-  "STLVTCertifyingAuthority" VARCHAR,
+  "STLVTCertifyingAuthority" TEXT,
   "PreferredLanguage" NCHAR NOT NULL,
   PRIMARY KEY("DriverID"),
   CONSTRAINT "Language_Driver"
@@ -73,16 +73,16 @@ print("Table Driver succesfully created")
 
 conn.execute('''CREATE TABLE IF NOT EXISTS "Location"(
   "LocationID" INTEGER NOT NULL,
-  "Name" VARCHAR NOT NULL,
-  "Address" VARCHAR NOT NULL,
-  "Type" VARCHAR NOT NULL,
+  "Name" TEXT NOT NULL,
+  "Address" TEXT NOT NULL,
+  "Type" TEXT NOT NULL,
   PRIMARY KEY("LocationID"));'''
 )
 
 print("Table Location succesfully created")
 
 conn.execute('''CREATE TABLE IF NOT EXISTS "Booking"(
-  "Reference" VARCHAR NOT NULL,
+  "Reference" TEXT NOT NULL,
   "StartTime" DATETIME NOT NULL,
   "EndTime" DATETIME NOT NULL,
   "StartOdometer" INTEGER NOT NULL,
@@ -113,7 +113,7 @@ conn.execute('''CREATE TABLE IF NOT EXISTS "VehicleAction"(
   "Type" CHARACTER NOT NULL,
   "Odometer" INT NOT NULL,
   "FinalCost" INT NOT NULL,
-  "Description" VARCHAR NOT NULL,
+  "Description" TEXT NOT NULL,
   "Date" DATE NOT NULL,
   PRIMARY KEY("ActionID"),
   CONSTRAINT "Vehicle_VehicleAction"
